@@ -1,5 +1,6 @@
+'use strict';
 
-const tasks = [
+export const tasks = [
   { text: 'Buy milk', done: false },
   { text: 'Pick up Tom from airport', done: false },
   { text: 'Visit party', done: false },
@@ -7,18 +8,47 @@ const tasks = [
   { text: 'Buy meat', done: true },
 ];
 
-const listElem = document.querySelector('.list');
-const todoListItems = tasks.map(({text, done}) => {
-  const newItem = document.createElement('li');
-  if(done){
-      newItem.classList.add('list__item_done');
-  }
-  newItem.classList.add('list__item');
-  const checkboxElem = document.createElement('input');
-  checkboxElem.classList.add('list__item-checkbox');
-  checkboxElem.setAttribute('type', 'checkbox');
-  checkboxElem.checked = done;
-  newItem.append(checkboxElem, text);
-  return newItem
-});
-listElem.append(...todoListItems)
+/**
+ * @param {object[]} tasksList
+ * @return {undefined}
+ */
+// sort arr
+// create ul
+// create li
+// create checkbox
+// append checkbox to li
+// append text to li
+// append li to ul
+
+const renderTasks = (tasksList) => {
+  console.log(`renderTasks is running`);
+
+  const listElem = document.querySelector(".list");
+
+  const listItemsElements = tasksList.map((item) => {
+    const listItemElement = document.createElement("li");
+    listItemElement.classList.add("list__item");
+
+    const checkbox = document.createElement("INPUT");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.classList.add("list__item-checkbox");
+
+    if (item.done) {
+      checkbox.checked = "true";
+      listItemElement.classList.toggle("list__item_done");
+    }
+
+    listItemElement.append(checkbox);
+    listItemElement.append(`${item.text}`);
+
+    return listItemElement;
+  });
+
+  listElem.append(...listItemsElements);
+};
+renderTasks(tasks);
+
+document.querySelector(".create-task-btn").onclick = () => {
+  const newValueText = document.querySelector(".task-input").value;
+  tasks.push({ text: newValueText, done: false });
+};
