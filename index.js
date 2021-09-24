@@ -1,5 +1,5 @@
-export const squaredNumbers = () => {
-  const getNum = document.querySelectorAll('.number');
-  [...getNum].map(el => (el.dataset.squaredNumber = el.dataset.number ** 2));
+export const getSection = num => {
+  const getSpan = document.querySelector(`span[data-number="${num}"]`);
+  const result = getSpan.closest('.box').dataset.section;
+  return result;
 };
-squaredNumbers();
