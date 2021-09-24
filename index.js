@@ -1,9 +1,15 @@
-export const finishForm = () => {
-  const elemList = document.querySelector('input');
-  elemList.setAttribute('type', 'text');
-  elemList.setAttribute('name', 'login');
-  const inputNew = document.createElement('input');
-  elemList.append(inputNew);
-  inputNew.setAttribute('type', 'password');
-  inputNew.setAttribute('name', 'password');
+export const manageClasses = () => {
+  const elOne = document.querySelector('.one');
+  elOne.classList.add('selected');
+
+  const elTwo = document.querySelector('.two');
+  elTwo.classList.remove('selected');
+
+  const elThree = document.querySelector('.three');
+  elThree.classList.toggle('three_done');
+
+  const elFour = document.querySelector('.four');
+  if (elFour.classList.contains('some-class')) {
+    elFour.classList.add('another-class');
+  }
 };
