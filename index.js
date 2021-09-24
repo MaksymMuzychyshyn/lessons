@@ -1,6 +1,8 @@
    
-const elemBtn = document.querySelectorAll('.btn');
-const handleClick = event => {
-  console.log(event.target.textContent);
+
+export const createButton = buttonText => {
+  const buttonElem = document.createElement('button');
+  buttonElem.textContent = buttonText;
+  const listElem = document.querySelector('body');
+  listElem.append(buttonElem);
 };
-[...elemBtn].map(el => el.addEventListener('click', handleClick));
