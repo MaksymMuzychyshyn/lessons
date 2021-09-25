@@ -1,5 +1,8 @@
-const elemTask = document.querySelector('.task-status');
-const taskStatus = () => {
-  console.log(elemTask.checked);
+
+const elemSearch = document.querySelector('.search__input');
+const elemBtn = document.querySelector('.search__btn');
+const getText = () => {
+  console.log(elemSearch.value);
 };
-elemTask.addEventListener('change', taskStatus);
+
+elemBtn.addEventListener('click', getText);
