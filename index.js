@@ -1,8 +1,9 @@
 
-const elemSearch = document.querySelector('.search__input');
-const elemBtn = document.querySelector('.search__btn');
-const getText = () => {
-  console.log(elemSearch.value);
+const btn = document.querySelector('.single-use-btn');
+
+const click = () => {
+  console.log(`clicked`);
+  btn.removeEventListener('click', click);
 };
 
-elemBtn.addEventListener('click', getText);
+btn.addEventListener('click', click);
