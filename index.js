@@ -1,54 +1,58 @@
-'use strict';
 
-export const tasks = [
-  { text: 'Buy milk', done: false },
-  { text: 'Pick up Tom from airport', done: false },
-  { text: 'Visit party', done: false },
-  { text: 'Visit doctor', done: true },
-  { text: 'Buy meat', done: true },
-];
-
-/**
- * @param {object[]} tasksList
- * @return {undefined}
- */
-// sort arr
-// create ul
-// create li
-// create checkbox
-// append checkbox to li
-// append text to li
-// append li to ul
-
-const renderTasks = (tasksList) => {
-  console.log(`renderTasks is running`);
-
-  const listElem = document.querySelector(".list");
-
-  const listItemsElements = tasksList.map((item) => {
-    const listItemElement = document.createElement("li");
-    listItemElement.classList.add("list__item");
-
-    const checkbox = document.createElement("INPUT");
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.classList.add("list__item-checkbox");
-
-    if (item.done) {
-      checkbox.checked = "true";
-      listItemElement.classList.toggle("list__item_done");
-    }
-
-    listItemElement.append(checkbox);
-    listItemElement.append(`${item.text}`);
-
-    return listItemElement;
-  });
-
-  listElem.append(...listItemsElements);
+const divElem = document.querySelector('.rect_div');
+const pElem = document.querySelector('.rect_p');
+const spanElem = document.querySelector('.rect_span');
+const logTarget = (text, color) => {
+  const eventsListElem = document.querySelector('.events-list');
+  eventsListElem.innerHTML += `<span style="color:${color}; margin-left: 8px">${text}</span>`;
 };
-renderTasks(tasks);
 
-document.querySelector(".create-task-btn").onclick = () => {
-  const newValueText = document.querySelector(".task-input").value;
-  tasks.push({ text: newValueText, done: false });
+const logGreenDiv = logTarget.bind(null, 'DIV', 'green');
+const logGreenP = logTarget.bind(null, 'P', 'green');
+const logGreenSpan = logTarget.bind(null, 'SPAN', 'green');
+
+const logGreyDiv = logTarget.bind(null, 'DIV', 'grey');
+const logGreyP = logTarget.bind(null, 'P', 'grey');
+const logGreySpan = logTarget.bind(null, 'SPAN', 'grey');
+
+divElem.addEventListener('click', logGreyDiv, true);
+divElem.addEventListener('click', logGreenDiv);
+
+pElem.addEventListener('click', logGreyP, true);
+pElem.addEventListener('click', logGreenP);
+
+spanElem.addEventListener('click', logGreySpan, true);
+spanElem.addEventListener('click', logGreenSpan);
+
+const clearElem = document.querySelector('.clear-btn');
+const eventsListElem = document.querySelector('.events-list');
+const clearList = () => {
+  eventsListElem.innerHTML = '';
 };
+clearElem.addEventListener('click', clearList);
+
+const removeHandlers = document.querySelector('.remove-handlers-btn');
+const removeHandlersBtn = () => {
+  divElem.removeEventListener('click', logGreyDiv, true);
+  divElem.removeEventListener('click', logGreenDiv);
+
+  pElem.removeEventListener('click', logGreyP, true);
+  pElem.removeEventListener('click', logGreenP);
+
+  spanElem.removeEventListener('click', logGreySpan, true);
+  spanElem.removeEventListener('click', logGreenSpan);
+};
+removeHandlers.addEventListener('click', removeHandlersBtn);
+
+const attachHandlers = document.querySelector('.attach-handlers-btn');
+const attachHandlersBtn = () => {
+  divElem.addEventListener('click', logGreyDiv, true);
+  divElem.addEventListener('click', logGreenDiv);
+
+  pElem.addEventListener('click', logGreyP, true);
+  pElem.addEventListener('click', logGreenP);
+
+  spanElem.addEventListener('click', logGreySpan, true);
+  spanElem.addEventListener('click', logGreenSpan);
+};
+attachHandlers.addEventListener('click', attachHandlersBtn);
