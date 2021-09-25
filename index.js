@@ -1,6 +1,5 @@
-   
-const elInput = document.querySelector('.text-input');
-const textInput = () => {
-  console.log(elInput.value);
+const elemTask = document.querySelector('.task-status');
+const taskStatus = () => {
+  console.log(elemTask.checked);
 };
-elInput.addEventListener('change', textInput);
+elemTask.addEventListener('change', taskStatus);
