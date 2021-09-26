@@ -1,5 +1,6 @@
-const taskStatus = document.querySelector('.task-status');
+
+const elPage = document.querySelectorAll('.pagination__page');
 const handleClick = event => {
-  console.log(event.target.checked);
+  console.log(event.target.dataset.pageNumber);
 };
-taskStatus.addEventListener('change', handleClick);
+[...elPage].map(el => el.addEventListener('click', handleClick));
