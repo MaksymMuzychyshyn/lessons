@@ -1,5 +1,6 @@
-const elemText = document.querySelector('.text-input');
+
+const taskStatus = document.querySelector('.task-status');
 const handleClick = event => {
-  console.log(event.target.value);
+  console.log(event.target.checked);
 };
-elemText.addEventListener('change', handleClick);
+taskStatus.addEventListener('change', handleClick);
