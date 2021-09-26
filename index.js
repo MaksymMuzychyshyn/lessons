@@ -1,9 +1,5 @@
-
-const btn = document.querySelector('.single-use-btn');
-
-const click = () => {
-  console.log(`clicked`);
-  btn.removeEventListener('click', click);
+const elemBtn = document.querySelectorAll('.btn');
+const handleClick = event => {
+  console.log(event.target.textContent);
 };
-
-btn.addEventListener('click', click);
+[...elemBtn].map(el => el.addEventListener('click', handleClick));
