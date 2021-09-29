@@ -1,15 +1,10 @@
-const msInSec = 1000;
-const msInMin = msInSec * 60;
-const msInHour = msInMin * 60;
-const msInDay = msInHour * 24;
+const weekDays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'St'];
 
-export const getDiff = (startDate, endDate) => {
-    const diff = Math.abs(startDate.getTime() - endDate.getTime());
-
-    const diffDays = Math.floor(diff / msInDay);
-    const diffHours = Math.floor((diff % msInDay) / msInHour);
-    const diffMins = Math.floor((diff % msInHour) / msInMin);
-    const difSec = Math.floor((diff % msInMin) / msInSec);
-    
-    return `${diffDays}d ${diffHours}h ${diffMins}m ${difSec}s`;
-}
+const dayOfweek = (date, days) => {
+  const day = new Date(date).getDate();
+  console.log(day);
+  const dateInFuture = new Date(date).setDate(day + days);
+  return weekDays[new Date(dateInFuture).getDay()];
+};
+const result = dayOfweek(new Date(2019, 0, 1), 14);
+console.log(result);
