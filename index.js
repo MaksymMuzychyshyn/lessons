@@ -1,18 +1,15 @@
-const getDiff = (startDate, endDate) => {
-  let totalSec = '';
-  if (startDate < endDate) {
-    totalSec = new Date(endDate - startDate) / 1000;
-  } else {
-    totalSec = new Date(startDate - endDate) / 1000;
-  }
+const msInSec = 1000;
+const msInMin = msInSec * 60;
+const msInHour = msInMin * 60;
+const msInDay = msInHour * 24;
 
-  const days = Math.floor(totalSec / 3600 / 24);
-  const hours = Math.floor(totalSec / 3600) % 24;
-  const mins = Math.floor(totalSec / 60) % 60;
-  const sec = Math.floor(totalSec) % 60;
+export const getDiff = (startDate, endDate) => {
+    const diff = Math.abs(startDate.getTime() - endDate.getTime());
 
-  return `${days}d ${hours}h ${mins}m ${sec}s`;
-};
-
-console.log(getDiff(new Date(2020, 1, 14), new Date(2021, 3, 4)));
-console.log(getDiff(new Date(2021, 3, 4), new Date(2020, 1, 14)));
+    const diffDays = Math.floor(diff / msInDay);
+    const diffHours = Math.floor((diff % msInDay) / msInHour);
+    const diffMins = Math.floor((diff % msInHour) / msInMin);
+    const difSec = Math.floor((diff % msInMin) / msInSec);
+    
+    return `${diffDays}d ${diffHours}h ${diffMins}m ${difSec}s`;
+}
